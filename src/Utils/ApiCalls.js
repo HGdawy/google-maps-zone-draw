@@ -5,14 +5,15 @@ import { setUserSession , getToken } from './Common';
 
 //retries in faild api requst
 axiosRetry(axios, {
-  retries: 2, // number of retries
+  retries: 1, // number of retries
   retryDelay: (retryCount) => {
     console.log(`retry attempt: ${retryCount}`);
     return retryCount * 2000; // time interval between retries
   },
   retryCondition: (error) => {
-    return error.response.status === 503;
+    return error.response.status ;
   },
+  
 });
 
 // post user data to halan servier and push the token to session 
@@ -45,7 +46,7 @@ export const getZones = ()=>{
 
 // post the drawn zone with name & color & paths
 export const postZones = (path , color , zone)=>{
-  axios.post('https://zones-backend-halan.herokuapp.com/zones',
+   axios.post('https://zones-backend-halan.herokuapp.com/zones',
   {
     'label':zone,
     'color':color,
@@ -54,7 +55,7 @@ export const postZones = (path , color , zone)=>{
   {headers: {
     'Authorization': 'Bearer ' + getToken(),
   }}).then(response => {
-        
+        console.log(response)
   }).catch(error => {
       if (error.response.status === 401) {
       console.log(error.response)
