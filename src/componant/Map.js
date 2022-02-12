@@ -56,7 +56,7 @@ function Map() {
   // pass map config 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyDImYMD6lEY1iWlOkHLhBLbHyiS3-YpQgc",
+    googleMapsApiKey: {/*add google API key here */},
     libraries:libraries
   })
 
